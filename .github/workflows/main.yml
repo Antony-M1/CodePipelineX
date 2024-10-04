@@ -23,12 +23,12 @@ jobs:
           pip install -r requirements.txt
  
       - name: Set up OpenAI API key
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           echo "Setting up OpenAI API key is done"
  
       - name: Generate code using Codex
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}      
         run: |
           python codex_code_generator.py > generated_code.py
  
