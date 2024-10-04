@@ -1,0 +1,41 @@
+name: CI/CD for AutoSoft with Codex
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  generate_code:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+ 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10.12'
+ 
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+ 
+      - name: Set up OpenAI API key
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+ 
+      - name: Generate code using Codex
+        run: |
+          python codex_code_generator.py > generated_code.py
+ 
+      - name: Run tests
+        run: |
+          python -m unittest discover tests
+ 
+      - name: Deploy to Production (example placeholder)
+        if: success()
+        run: |
+          echo "Deploying generated code..."
+          # Here you'd add actual deployment steps (e.g., upload to a cloud provider)
