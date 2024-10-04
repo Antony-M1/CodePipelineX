@@ -25,6 +25,8 @@ jobs:
       - name: Set up OpenAI API key
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "Setting up OpenAI API key is done"
  
       - name: Generate code using Codex
         run: |
