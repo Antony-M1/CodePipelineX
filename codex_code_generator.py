@@ -8,7 +8,7 @@ openai.api_key = os.environ.get('OPENAI_API_KEY')
 model_name = os.environ.get('MODEL_NAME', "gpt-3.5-turbo-instruct")
 
 
-class APIKeyNotFound(Exception):
+class OpenAIAPIKeyNotFound(Exception):
     pass
 
 
