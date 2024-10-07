@@ -13,7 +13,7 @@ class OpenAIAPIKeyNotFound(Exception):
 
 
 if not openai.api_key:
-    raise APIKeyNotFound
+    raise OpenAIAPIKeyNotFound
 
 
 def generate_code(prompt: str, **kwargs) -> str:
