@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  TEST_V1: ${{ vars.TEST_V1 }}
+  TEST_S1: ${{ secrets.TEST_S1 }}  
  
 jobs:
   generate_code:
