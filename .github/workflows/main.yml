@@ -21,6 +21,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+      
+      - name: Check dependencies
+        run: |
+          pip freeze
  
       - name: Generate code using Codex
         env:
