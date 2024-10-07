@@ -25,7 +25,12 @@ jobs:
       - name: Check dependencies
         run: |
           pip freeze
- 
+      
+      - name: Check the API key
+        run: |
+          echo "API_KEY: ${{ secrets.OPENAI_API_KEY }}"
+          echo "Checking API Key"
+
       - name: Generate code using Codex
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}      
