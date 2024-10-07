@@ -8,9 +8,29 @@ openai.api_key = os.environ.get('OPENAI_API_KEY')
 model_name = os.environ.get('MODEL_NAME', "gpt-3.5-turbo-instruct")
 
 
+TEST_V1 = os.environ.get('TEST_V1')
+TEST_S1 = os.environ.get('TEST_S1')
+
+
 class OpenAIAPIKeyNotFound(Exception):
     pass
 
+
+class BothTestVailed(Exception):
+    pass
+
+class TEST_V1_NotFound(Exception):
+    pass
+
+class TEST_S1_NotFound(Exception):
+    pass
+
+if not TEST_V1 and not TEST_S1:
+    raise BothTestVailed
+elif TEST_V1 and not TEST_S1:
+    raise TEST_V1_NotFound
+elif not TEST_V1 and TEST_S1:
+    raise TEST_S1_NotFound
 
 if not openai.api_key:
     raise OpenAIAPIKeyNotFound
