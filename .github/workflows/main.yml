@@ -30,6 +30,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}      
         run: |
+          if [ -z "$OPENAI_API_KEY" ]; then echo "API Key not found!"; exit 1; else echo "API Key loaded successfully"; fi
           python codex_code_generator.py > generated_code.py
  
       - name: Run tests
