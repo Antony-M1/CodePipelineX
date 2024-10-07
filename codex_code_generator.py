@@ -8,6 +8,14 @@ openai.api_key = os.environ.get('OPENAI_API_KEY')
 model_name = os.environ.get('MODEL_NAME', "gpt-3.5-turbo-instruct")
 
 
+class APIKeyNotFound(Exception):
+    pass
+
+
+if not openai.api_key:
+    raise APIKeyNotFound
+
+
 def generate_code(prompt: str, **kwargs) -> str:
     """
         Generate code based on the given prompt
