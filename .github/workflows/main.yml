@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-env:
-  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-  TEST_V1: ${{ vars.TEST_V1 }}
-  TEST_S1: ${{ secrets.TEST_S1 }}  
  
 jobs:
   generate_code:
@@ -29,21 +25,12 @@ jobs:
       - name: Check dependencies
         run: |
           pip freeze
-      
-      - name: Check the API key
-        run: |
-          echo "API_KEY: ${{ secrets.OPENAI_API_KEY }}"
-          echo "TEST_V1: ${{ vars.TEST_V1 }}"
-          echo "TEST_S1: ${{ secrets.TEST_S1 }}"
-          echo "Checking API Key"
 
       - name: Generate code using Codex
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          TEST_V1: ${{ vars.TEST_V1 }}
-          TEST_S1: ${{ secrets.TEST_S1 }}      
         run: |
-          # if [ -z "$OPENAI_API_KEY" ]; then echo "API Key not found!"; exit 1; else echo "API Key loaded successfully"; fi
+          if [ -z "$OPENAI_API_KEY" ]; then echo "API Key not found!"; exit 1; else echo "API Key loaded successfully"; fi
           python codex_code_generator.py > generated_code.py
  
       - name: Run tests
