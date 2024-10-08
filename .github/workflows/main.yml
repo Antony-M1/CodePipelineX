@@ -12,7 +12,7 @@ env:
 jobs:
   generate_code:
     runs-on: ubuntu-latest
- 
+    environment: OpenAI
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
