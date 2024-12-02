@@ -33,7 +33,7 @@ def generate_code(prompt: str, **kwargs) -> str:
 
 
 if __name__ == '__main__':
-    prompt = "Generate a Python function that sorts a list of numbers using\
+    prompt = "Generate a Node js function that sorts a list of numbers using\
         bubble sort."
     generated_code = generate_code(prompt)
     print(generated_code)
